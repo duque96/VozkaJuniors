@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".vista.CreatePlayerActivity">
 
+    <com.joooonho.SelectableRoundedImageView
+        android:id="@+id/imageButtonCamera"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="cargarImagen"
+        android:scaleType="centerCrop"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toTopOf="@+id/editTextName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:sriv_border_color="@color/colorPrimary"
+        app:sriv_border_width="2dp"
+        app:sriv_oval="true" />
+
+
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"

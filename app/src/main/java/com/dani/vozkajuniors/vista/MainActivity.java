@@ -2,9 +2,11 @@ package com.dani.vozkajuniors.vista;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.dani.vozkajuniors.R;
 import com.dani.vozkajuniors.logica.adapter.PlayerAdapter;
@@ -50,5 +52,19 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    public void createLineUp(View view) {
+        List <Player> aux = new ArrayList<Player>();
+        for (Player p : playerAdapter.getPlayers()) {
+            if (p.isSelected){
+                aux.add(p);
+            }
+        }
+        Intent intent = new Intent(this, LineUpActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("list", (ArrayList<? extends Parcelable>) aux);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
