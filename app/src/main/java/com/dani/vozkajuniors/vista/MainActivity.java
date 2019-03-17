@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         playerAdapter = new PlayerAdapter();
         recyclerView.setAdapter(playerAdapter);
+        playerAdapter.setContext(this);
 
         new AsyncGetPlayer(playerAdapter, this).execute();
 

@@ -17,7 +17,8 @@ public abstract class PlayerDatabase extends RoomDatabase {
     public static synchronized PlayerDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room
-                    .databaseBuilder(context.getApplicationContext(), PlayerDatabase.class, "database")
+                    .databaseBuilder(context.getApplicationContext(), PlayerDatabase.class,
+                            "players")
                     .allowMainThreadQueries()
                     .build();
         }

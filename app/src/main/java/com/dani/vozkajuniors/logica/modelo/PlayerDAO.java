@@ -15,9 +15,8 @@ public interface PlayerDAO {
 //   @Query("SELECT * FROM player WHERE uid IN (:userIds)")
 //    List<Player> loadAllByIds(int[] userIds);
 //
-//    @Query("SELECT * FROM player WHERE nombre LIKE :first AND " +
-//            "last_name LIKE :last LIMIT 1")
-//    Player findByName(String first, String last);
+    @Query("SELECT * FROM Players WHERE name = :name LIMIT 1")
+    Player findByName(String name);
 
     @Insert
     void insertAll(Player... users);

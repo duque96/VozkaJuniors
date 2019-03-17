@@ -1,5 +1,7 @@
 package com.dani.vozkajuniors.logica.adapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dani.vozkajuniors.R;
+import com.dani.vozkajuniors.logica.async.AsyncDeletePlayer;
 import com.dani.vozkajuniors.logica.modelo.Player;
 import com.dani.vozkajuniors.logica.util.Utilidades;
 import com.joooonho.SelectableRoundedImageView;
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
     private List<Player> players;
+    private Context context;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,10 +35,22 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         holder.image.setImageBitmap(Utilidades.getImage(player.image));
         holder.itemView.setBackgroundColor(player.isSelected ? Color.CYAN : Color.WHITE);
         holder.mText.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 player.setSelected(!player.isSelected);
-                holder.itemView.setBackgroundColor(player.isSelected ? Color.GREEN : Color.WHITE);
+                holder.itemView.setBackgroundColor(player.isSelected ? R.color.colorPrimary :
+                        Color.WHITE);
+            }
+        });
+
+        final PlayerAdapter adapter = this;
+
+        holder.mText.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AsyncDeletePlayer(context, ((TextView) v).getText().toString(), adapter).execute();
+                return true;
             }
         });
     }
@@ -50,6 +66,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

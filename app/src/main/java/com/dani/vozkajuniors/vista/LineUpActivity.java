@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.dani.vozkajuniors.R;
 import com.dani.vozkajuniors.logica.modelo.Player;
+import com.dani.vozkajuniors.logica.util.Utilidades;
+import com.joooonho.SelectableRoundedImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,24 +63,38 @@ public class LineUpActivity extends AppCompatActivity {
         int inicio2 = 6;
 
         for (int i = 0; i < 5; i++) {
-            int textId = getResources().getIdentifier("textView" + String.valueOf(i + inicio1), "id", getPackageName());
+            int textId = getResources().getIdentifier("textView" + String.valueOf(i + inicio1),
+                    "id",
+                    getPackageName());
+            int imageId = getResources().getIdentifier("image" + String.valueOf(i + inicio1),
+                    "id",
+                    getPackageName());
             TextView t = findViewById(textId);
+            SelectableRoundedImageView imageView = findViewById(imageId);
 
             if (i < equipo1.size()) {
                 t.setText(equipo1.get(i).name);
+                imageView.setImageBitmap(Utilidades.getImage(equipo1.get(i).image));
             } else {
                 t.setText(null);
+                imageView.setImageBitmap(null);
             }
         }
 
         for (int i = 0; i < 5; i++) {
             int textId = getResources().getIdentifier("textView" + String.valueOf(i + inicio2), "id", getPackageName());
+            int imageId = getResources().getIdentifier("image" + String.valueOf(i + inicio2),
+                    "id",
+                    getPackageName());
             TextView t = findViewById(textId);
+            SelectableRoundedImageView imageView = findViewById(imageId);
 
             if (i < equipo2.size()) {
                 t.setText(equipo2.get(i).name);
+                imageView.setImageBitmap(Utilidades.getImage(equipo2.get(i).image));
             } else {
                 t.setText(null);
+                imageView.setImageBitmap(null);
             }
         }
     }
